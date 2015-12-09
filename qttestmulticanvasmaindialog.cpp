@@ -28,12 +28,6 @@ ribi::QtTestMultiCanvasMainDialog::QtTestMultiCanvasMainDialog(QWidget *parent) 
   #endif
   ui->setupUi(this);
 
-  m_canvas->m_signal_changed.connect(
-    boost::bind(
-      &ribi::QtTestMultiCanvasMainDialog::ShowCanvas,this,
-      boost::lambda::_1)
-    );
-
   {
     const double w = m_canvas->GetWidth();
     const double h = m_canvas->GetHeight();

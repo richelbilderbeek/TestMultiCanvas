@@ -13,7 +13,6 @@
 #include "imagecanvas.h"
 #include "multicanvas.h"
 #include "testtimer.h"
-#include "richelbilderbeekprogram.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -111,24 +110,16 @@ ribi::Help ribi::TestMultiCanvasMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::TestMultiCanvasMenuDialog::GetProgram() const noexcept
-{
-  const boost::shared_ptr<const Program> p {
-    new ProgramTestMultiCanvas
-  };
-  assert(p);
-  return p;
-}
-
 std::string ribi::TestMultiCanvasMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "2.0";
 }
 
 std::vector<std::string> ribi::TestMultiCanvasMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-01-13: version 1.0: initial desktop version",
+    "2015-12-09: version 2.0: moved to own GitHub",
   };
 }
 
@@ -139,6 +130,12 @@ void ribi::TestMultiCanvasMenuDialog::Test() noexcept
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
+  }
+  {
+    DrawCanvas();
+    ImageCanvas();
+    TextCanvas();
+    MultiCanvas();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
   boost::shared_ptr<Canvas> draw_canvas;
